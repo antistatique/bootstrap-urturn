@@ -1,6 +1,9 @@
-// Urturn specific
+/**
+ * URTURN SPECIFIC
+ */
 
 // Urturn variables
+
 @redButton:             #F21400;
 @redButtonDark:         #C30B01;
 
@@ -13,9 +16,11 @@
 @grayTitle:             #646464;
 @grayLine:              #d1d0cf;
 
+
 // Urturn mixins
+
 .font-size(@sizeValue) {
-  @remValue: (@sizeValue/10);
+  @remValue: (@sizeValue/@baseFontSize);
   @pxValue: (@sizeValue);
   font-size: ~"@{pxValue}px";
   font-size: ~"@{remValue}rem";
@@ -26,43 +31,122 @@
   .font-size(@fontSize);
 }
 
-// Brand identity
-.brand {
-  font-size: 25px;
 
-  &:hover,
-  &:active,
-  &:focus {
-    color: @textColor;
+// Typo
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  margin-bottom: 0;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+h1 { font-size: @baseFontSize * 2.5; line-height: 1.4em; margin-bottom: 0.2em; }
+h2 { font-size: @baseFontSize * 2.0; line-height: 1.4em; margin-bottom: 0.2em; }
+h3 { font-size: @baseFontSize * 1.5; line-height: 1.4em; margin-bottom: 0.2em; }
+
+
+// Brand identity
+
+.navbar {
+  .font-size(16);
+
+  .brand {
+    font-weight: 400;
+    text-shadow: 0 1px 0 rgba(0,0,0,.25);
+
+    &:hover,
+    &:active,
+    &:focus {
+      opacity: .9;
+    }
+
+    &.with_logo {
+      padding-top: 0;
+      padding-bottom: 0;
+
+      line-height: @navbarHeight;
+    }
 
     .logo {
-      background-color: darken(@red,5%);
+      display: inline-block;
+      width: 84px;
+      height: @navbarHeight;
+      margin: 0 16px 0 0;
+
+      color: transparent;
+      text-shadow: none;
+
+      background: url(../images/logo.png) no-repeat 50% 40%;
+    }
+
+    strong {
+      display: none;
     }
   }
 
-  &.with_logo {
-    padding-top: 0;
-    padding-bottom: 0;
-
-    line-height: 50px;
-  }
-
-  .logo {
-    display: inline-block;
-    width: 112px;
-    height: 44px;
-    margin: 0 12px 0 0;
-
-    color: transparent;
-    text-shadow: none;
-
-    background: @red url(../images/logo.png) no-repeat 50% 45%;
-  }
-
-  strong {
-    display: none;
+  .nav > li > a {
+    text-shadow: 0 1px 0 rgba(0,0,0,.25);
   }
 }
+
+.navbar-inner {
+  background: @bloodyRed;
+  border: none;
+}
+
+.navbar-search {
+  margin-top: 10px;
+}
+
+.form-search .input-append .search-query {
+  -webkit-border-radius: 16px 0 0 16px;
+     -moz-border-radius: 16px 0 0 16px;
+          border-radius: 16px 0 0 16px;
+}
+
+.form-search .input-append .btn {
+  height: 33px; // Avoid bug in Firefox
+  -webkit-border-radius: 0 16px 16px 0;
+     -moz-border-radius: 0 16px 16px 0;
+          border-radius: 0 16px 16px 0;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border-color: rgb(128,128,128);
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+
+  -webkit-box-shadow: 0 0 5px rgb(152, 152, 152);
+     -moz-box-shadow: 0 0 5px rgb(152, 152, 152);
+          box-shadow: 0 0 5px rgb(152, 152, 152);
+}
+
 .hero-unit{
   padding: 40px;
   margin-bottom: 20px;
@@ -70,6 +154,7 @@
   .border-radius(4px);
   .box-shadow(0px 0px 5px rgba(0,0,0,.1));
 }
+
 .well{
   border: none;
   .border-radius(4px);
@@ -82,31 +167,25 @@
     margin-bottom: 0;
   }
 }
+
 /* Useful to put navs in */
 .well-light {
   padding: 0;
 }
 
-// Urturn Buttons
-.btn{
-  .buttonBackground(@btnBackground, @btnBackgroundHighlight, @white, 0 1px 1px rgba(255,255,255,.75));
-  text-shadow: none;
-}
+.page-wrap {
+  padding-top: 3em;
+  padding-bottom: 3em;
 
-.btn-primary{
-  .btn;
-  .buttonBackground(@redButton, @redButtonDark, @redButtonDark, 0 1px 1px rgba(255,255,255,.75));
-  .border-radius(2px);
-  text-shadow: none;
-  .font-size(16px);
-  padding: 10px 20px;
-  color: @white;
-  &:hover{
-    color: @white;
+  @media (max-width: 767px) {
+    padding-top: 1em;
+    padding-bottom: 1em;
   }
 }
 
+
 // Footer
+
 .footer{
   background-color: @grayDarker;
   color: @white;
@@ -140,28 +219,46 @@
   }
 }
 
-// Elements
-pre {
-  background-color: @white;
-  .border-radius(4px);
-}
 
-.navbar-inner{
-  background: url('../images/patterns/bg_header.png') repeat;
-}
-.navbar .btn-navbar {
-  .buttonBackground(darken(@navbarBackgroundHighlight, 18%), darken(@navbarBackground, 18%));
-}
-@media (max-width: 979px){
-  body{
-    .navbar-fixed-top .navbar-inner, .navbar-fixed-bottom .navbar-inner {
-      padding: 0px;
-    } 
+// Elements
+
+pre {
+  font-size: 12px;
+  background-color: @white;
+  border-color: rgb(217,217,217);
+  .border-radius(4px);
+
+  code {
+    background: none;
+    border: none;
   }
 }
 
-// Quote
-// Blockquotes
+code {
+  color: @bloodyRed;
+  font-weight: normal;
+  background: white;
+}
+
+.navbar .btn-navbar {
+  .buttonBackground(darken(@navbarBackgroundHighlight, 18%), darken(@navbarBackground, 18%));
+}
+
+@media (max-width: 979px){
+  .navbar-fixed-top .navbar-inner,
+  .navbar-fixed-bottom .navbar-inner {
+    padding: 0px;
+  }
+
+  .nav-collapse .nav > li > a {
+    color: white;
+
+    &:hover {
+      background-color: lighten(@bloodyRed,5%);
+    }
+  }
+}
+
 blockquote {
   padding: 0 0 0 16px;
   margin: 0 0 @baseLineHeight;
@@ -183,58 +280,7 @@ blockquote {
   }
 }
 
-
-// Doc navigation (inspired by bootstrap website documentation docs.css, not a really nice code indeed)
-.bs-docs-sidenav .nav-header{
-  border: 1px solid #ddd;
-  .font-size(12);
-  padding: 0.3em 0.6em;
-  line-height: 1.3em;
-  font-weight: 400;
-}
-.bs-docs-sidenav {
-  background-color: #fff;
-  .border-radius(4px);
-  .box-shadow(0 1px 4px rgba(0,0,0,.065));
-  & > li > a {
-  display: block;
-  margin: 0 0 -1px;
-  padding: 8px 14px;
-  border: 1px solid #e5e5e5;
-  }
-}
-.bs-docs-sidenav > li:first-child > a {
-  border-radius: 6px 6px 0 0;
-}
-.bs-docs-sidenav > li:last-child > a {
-  border-radius: 0 0 6px 6px;
-}
-.bs-docs-sidenav .bs-docs-sidenav{
-  margin-bottom: 0em;
-  & > li:last-child > a {
-    border-radius: 0 0 0 0;
-  }
-  a{
-    padding-left: 2em;
-  }
-}
-.bs-docs-sidenav > li > a:hover, .bs-docs-sidenav > .active > a:hover {
-  background-color: #e5e5e5;
-  color: @redButtonDark;
-}
-.bs-docs-sidenav > .active > a, .bs-docs-sidenav > .active > a:hover {
-  background-color: @red;
-  color: @white;
-}
-.bs-docs-sidenav > .active > a{
-  position: relative;
-  z-index: 2;
-  border: 0;
-  text-shadow: 0 1px 0 rgba(0,0,0,.15);
-  box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
-}
-
-hr{
+hr {
   height: 20px;
   margin: 13px 0 33px;
   position: relative;
@@ -249,7 +295,15 @@ hr{
     top: 0;
     background-color: rgba(230,230,230, 0.25);
     border-radius: 50%;
-    box-shadow: rgba(150, 150, 150, 0.5) 0 5px 10px;
+    .box-shadow(rgba(150, 150, 150, 0.5) 0 5px 10px);
     clip: rect(20px, auto, 50px, 0);
   }
+}
+
+
+// Tables
+
+.table-striped tbody > tr:nth-child(odd) > td,
+.table-striped tbody > tr:nth-child(odd) > th {
+  background-color: rgb(245,245,245);
 }

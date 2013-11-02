@@ -24,6 +24,7 @@
 @blueDark:              #0064cd;
 @green:                 #46a546;
 @red:                   #e60f00;
+@bloodyRed:             #c00f14;
 @yellow:                #ffc40d;
 @orange:                #f89406;
 @pink:                  #c3325f;
@@ -46,9 +47,9 @@
 // -------------------------
 @sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif;
 @serifFontFamily:       Georgia, "Times New Roman", Times, serif;
-@monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace;
+@monoFontFamily:        Menlo, Monaco, Consolas, "Courier New", monospace;
 
-@baseFontSize:          15px;
+@baseFontSize:          14px;
 @baseFontFamily:        @sansFontFamily;
 @baseLineHeight:        23px;
 @altFontFamily:         @serifFontFamily;
@@ -70,9 +71,9 @@
 @paddingSmall:          2px 10px;  // 26px
 @paddingMini:           0 6px;   // 22px
 
-@baseBorderRadius:      0px;
-@borderRadiusLarge:     3px;
-@borderRadiusSmall:     0px;
+@baseBorderRadius:      4px;
+@borderRadiusLarge:     5px;
+@borderRadiusSmall:     3px;
 
 
 // Tables
@@ -84,12 +85,12 @@
 
 // Buttons
 // -------------------------
-@btnBackground:                     #787878;
-@btnBackgroundHighlight:            #3d3d3d;
-@btnBorder:                         #ccc;
+@btnBackground:                     rgb(251,251,251);
+@btnBackgroundHighlight:            rgb(221,221,221);
+@btnBorder:                         rgb(213,213,213);
 
-@btnPrimaryBackground:              @linkColor;
-@btnPrimaryBackgroundHighlight:     spin(@btnPrimaryBackground, 20%);
+@btnPrimaryBackground:              @red;
+@btnPrimaryBackgroundHighlight:     @bloodyRed;
 
 @btnInfoBackground:                 #5bc0de;
 @btnInfoBackgroundHighlight:        #2f96b4;
@@ -181,15 +182,15 @@
 @navbarCollapseDesktopWidth:      @navbarCollapseWidth + 1;
 
 @navbarHeight:                    54px;
-@navbarBackgroundHighlight:       #F2F2F2;
-@navbarBackground:                darken(@navbarBackgroundHighlight, 5%);
-@navbarBorder:                    darken(@navbarBackground, 12%);
+@navbarBackgroundHighlight:       @red;
+@navbarBackground:                @bloodyRed;
+@navbarBorder:                    darken(@bloodyRed, 12%);
 
-@navbarText:                      #777;
-@navbarLinkColor:                 #777;
-@navbarLinkColorHover:            @grayDark;
-@navbarLinkColorActive:           @gray;
-@navbarLinkBackgroundHover:       transparent;
+@navbarText:                      white;
+@navbarLinkColor:                 white;
+@navbarLinkColorHover:            white;
+@navbarLinkColorActive:           white;
+@navbarLinkBackgroundHover:       @red;
 @navbarLinkBackgroundActive:      darken(@navbarBackground, 4%);
 
 @navbarBrandColor:                @navbarLinkColor;
